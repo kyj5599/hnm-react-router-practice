@@ -19,7 +19,7 @@ import PrivateRoute from "./route/PrivateRoute";
 function App() {
   const [authenticate, setAuthenticate] = useState(false); // true면 로그인이 됨, false면 로그인이 안됨
   useEffect(() => {
-    console.log("Aaaa", authenticate);
+    // console.log("Aaaa", authenticate);
   }, [authenticate]);
   return (
     <div>

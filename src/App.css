@@ -51,3 +51,8 @@
   font-size: 14px;
   background-color: transparent;
 }
+
+.product-img {
+  display: flex;
+  justify-content: flex-end;
+}
