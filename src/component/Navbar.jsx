@@ -1,10 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ authenticate, setAuthenticate, logout }) => {
   const menuList = [
     "여성",
     "Divided",
@@ -20,6 +21,15 @@ const Navbar = () => {
 
   const goToLogin = () => {
     navigate("/login");
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  const goToHome = () => {
+    navigate("/");
   };
 
   // const search = (event) => {
@@ -41,15 +51,24 @@ const Navbar = () => {
   return (
     <div>
       <div>
-        <div className="login-button" onClick={goToLogin}>
-          <FontAwesomeIcon icon={faUser} />
-          <div>로그인</div>
-        </div>
+        {authenticate ? (
+          <div className="login-button" onClick={handleLogout}>
+            <FontAwesomeIcon icon={faSignOutAlt} />
+            <div>로그아웃</div>
+          </div>
+        ) : (
+          <div className="login-button" onClick={goToLogin}>
+            <FontAwesomeIcon icon={faUser} />
+            <div>로그인</div>
+          </div>
+        )}
       </div>
       <div className="nav-section">
         <img
           width={100}
           src="https://blog.kakaocdn.net/dn/Yt80C/btqDeJAYUBo/JQbTuukRladq2AUOeqgiEK/img.jpg"
+          onClick={goToHome}
+          style={{ cursor: "pointer" }}
         />
       </div>
       <div className="menu-area">
