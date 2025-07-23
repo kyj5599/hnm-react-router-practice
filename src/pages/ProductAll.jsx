@@ -14,7 +14,8 @@ const ProductAll = () => {
     try {
       let keyword = query.get("q") || "";
       // let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products?q=${keyword}`;
-      let url = `http://localhost:4000/products`;
+      let url = `http://localhost:4000/products?q=${keyword}`;
+      // let url = `http://localhost:4000/products`;
 
       let response = await fetch(url);
       let data = await response.json();
@@ -42,6 +43,7 @@ const ProductAll = () => {
   useEffect(() => {
     getProducts();
   }, [query]);
+
   return (
     <Container>
       {error ? (
