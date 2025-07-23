@@ -14,7 +14,8 @@ const ProductAll = () => {
     try {
       let keyword = query.get("q") || "";
       // let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products?q=${keyword}`;
-      let url = `http://localhost:4000/products?q=${keyword}`;
+      // let url = `http://localhost:4000/products?q=${keyword}`;
+      let url = `https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice/products?q=${keyword}`;
       // let url = `http://localhost:4000/products`;
 
       let response = await fetch(url);
