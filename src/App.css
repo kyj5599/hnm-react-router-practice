@@ -1,13 +1,36 @@
+/* 기본 스타일 */
 .login-button {
   display: flex;
-  justify-content: flex-end;
-  margin: 20px;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
+  padding: 10px;
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.hamburger-menu {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
 }
 
 .nav-section {
   display: flex;
   justify-content: center;
+  flex: 1;
+}
+
+.auth-section {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .menu-list {
@@ -21,6 +44,10 @@
 .menu-list li {
   padding: 10px;
   cursor: pointer;
+}
+
+.menu-list li:hover {
+  background-color: #f5f5f5;
 }
 
 .menu-area {
@@ -55,4 +82,153 @@
 .product-img {
   display: flex;
   justify-content: flex-end;
+}
+
+/* 사이드 메뉴 스타일 */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background-color: white;
+  z-index: 1000;
+  transition: left 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.side-menu-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.side-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-menu-list li {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f5f5f5;
+  cursor: pointer;
+}
+
+.side-menu-list li:hover {
+  background-color: #f5f5f5;
+}
+
+.side-menu-search {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #333;
+  padding: 5px;
+}
+
+.side-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .menu-area {
+    display: none;
+  }
+
+  .auth-section {
+    display: none;
+  }
+
+  .navbar-header {
+    padding: 10px;
+  }
+
+  .nav-section img {
+    width: 80px;
+  }
+}
+
+/* 데스크톱에서 사이드 메뉴 숨기기 */
+@media (min-width: 769px) {
+  .side-menu,
+  .side-menu-overlay {
+    display: none;
+  }
+}
+
+/* 모바일에서 상품 카드 스타일 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .row {
+    margin: 0;
+  }
+
+  .col-sm-12 {
+    padding: 5px;
+  }
+
+  /* 상품 카드가 세로로 하나씩 나타나도록 */
+  .product-card {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  /* 상품 이미지 모바일 최적화 */
+  .product-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* 상품 상세 페이지 모바일 최적화 */
+  .product-detail {
+    flex-direction: column;
+  }
+
+  .product-detail .col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-detail img {
+    width: 100%;
+    height: auto;
+  }
 }

@@ -9,7 +9,7 @@ const ProductCard = ({ item }) => {
   };
 
   return (
-    <Card onClick={showDetail}>
+    <Card onClick={showDetail} className="product-card">
       <ImageWrapper>
         <Image src={item?.img} alt={item?.title} />
       </ImageWrapper>
