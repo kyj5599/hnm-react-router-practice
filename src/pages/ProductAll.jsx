@@ -14,10 +14,18 @@ const ProductAll = () => {
     try {
       let keyword = query.get("q") || "";
       // let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products?q=${keyword}`;
-      let url = `http://localhost:4000/products?q=${keyword}`;
+      let url = `http://localhost:4000/products`;
 
       let response = await fetch(url);
       let data = await response.json();
+
+      // 검색어가 있으면 클라이언트 사이드에서 필터링
+      if (keyword !== "") {
+        data = data.filter((item) =>
+          item.title.toLowerCase().includes(keyword.toLowerCase())
+        );
+      }
+
       if (data.length < 1) {
         if (keyword !== "") {
           setError(`${keyword}와 일치하는 상품이 없습니다`);
