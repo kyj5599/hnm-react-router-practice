@@ -1,5 +1,6 @@
 # 쇼핑몰 웹사이트 만들기(React + Vite)
 
+## 사이트 : https://hnm-react-router-practice.netlify.app
 ## hnm-react-router-practice
 1. 전체상품페이지, 로그인, 상품상세페이지
 2. 전체 상품페이지에서는 전체 상품을 볼 수 있다
