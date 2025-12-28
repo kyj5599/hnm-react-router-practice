@@ -16,11 +16,13 @@ const ProductAll = () => {
       setError(""); // 에러 초기화
 
       // 환경 변수에서 API URL 가져오기
+      // const API_URL =
+      //   import.meta.env.VITE_API_URL ||
+      //   (import.meta.env.DEV
+      //     ? "http://localhost:4000"
+      //     : "https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice");
       const API_URL =
-        import.meta.env.VITE_API_URL ||
-        (import.meta.env.DEV
-          ? "http://localhost:4000"
-          : "https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice");
+        "https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice";
       let url = `${API_URL}/products?q=${keyword}`;
 
       let response = await fetch(url);
