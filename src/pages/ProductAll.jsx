@@ -15,6 +15,7 @@ const ProductAll = () => {
       let keyword = query.get("q") || "";
       setError(""); // 에러 초기화
 
+      //
       // 환경 변수에서 API URL 가져오기
       // const API_URL =
       //   import.meta.env.VITE_API_URL ||
