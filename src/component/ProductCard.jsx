@@ -11,7 +11,20 @@ const ProductCard = ({ item }) => {
   return (
     <Card onClick={showDetail} className="product-card">
       <ImageWrapper>
-        <Image src={item?.img} alt={item?.title} />
+        <Image 
+          src={item?.img || 'https://via.placeholder.com/400x480/e5e5e5/999999?text=No+Image'} 
+          alt={item?.title}
+          onError={(e) => {
+            // 이미지 로드 실패 시 placeholder 사용
+            const placeholder = `https://via.placeholder.com/400x480/e5e5e5/999999?text=${encodeURIComponent(item?.title || 'No+Image')}`;
+            if (e.target.src !== placeholder && !e.target.src.includes('placeholder.com')) {
+              e.target.src = placeholder;
+            }
+          }}
+          onLoad={() => {
+            // 이미지 로드 성공 시 에러 상태 초기화
+          }}
+        />
       </ImageWrapper>
       <Info>
         <div className="choice">{item?.choice ? "Conscious choice" : ""}</div>

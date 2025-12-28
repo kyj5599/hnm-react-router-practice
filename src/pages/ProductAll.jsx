@@ -13,12 +13,22 @@ const ProductAll = () => {
   const getProducts = async () => {
     try {
       let keyword = query.get("q") || "";
-      // let url = `https://my-json-server.typicode.com/legobitna/hnm-react-router/products?q=${keyword}`;
-      // let url = `http://localhost:4000/products?q=${keyword}`;
-      let url = `https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice/products?q=${keyword}`;
-      // let url = `http://localhost:4000/products`;
+      setError(""); // 에러 초기화
+
+      // 환경 변수에서 API URL 가져오기
+      const API_URL =
+        import.meta.env.VITE_API_URL ||
+        (import.meta.env.DEV
+          ? "http://localhost:4000"
+          : "https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice");
+      let url = `${API_URL}/products?q=${keyword}`;
 
       let response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`서버 오류: ${response.status}`);
+      }
+
       let data = await response.json();
 
       // 검색어가 있으면 클라이언트 사이드에서 필터링
@@ -34,10 +44,18 @@ const ProductAll = () => {
         } else {
           throw new Error("결과가 없습니다");
         }
+      } else {
+        setProducts(data);
       }
-      setProducts(data);
     } catch (err) {
-      setError(err.message);
+      console.error("에러:", err);
+      if (err.message === "Failed to fetch" || err.name === "TypeError") {
+        setError(
+          "서버에 연결할 수 없습니다. json-server가 실행 중인지 확인해주세요. (npm run server)"
+        );
+      } else {
+        setError(err.message);
+      }
     }
   };
 

@@ -8,11 +8,25 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState("");
 
   const getProductDetail = async () => {
-    let url = `https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    // console.log(data);
-    setProduct(data);
+    try {
+      // 환경 변수에서 API URL 가져오기
+      const API_URL = import.meta.env.VITE_API_URL || 
+        (import.meta.env.DEV 
+          ? "http://localhost:4000" 
+          : "https://my-json-server.typicode.com/kyj5599/hnm-react-router-practice");
+      let url = `${API_URL}/products/${id}`;
+      let response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`서버 오류: ${response.status}`);
+      }
+      
+      let data = await response.json();
+      setProduct(data);
+    } catch (err) {
+      console.error("에러:", err);
+      alert("상품 정보를 불러올 수 없습니다. json-server가 실행 중인지 확인해주세요.");
+    }
   };
 
   useEffect(() => {
@@ -27,7 +41,14 @@ const ProductDetail = () => {
     <Container>
       <Row className="product-detail">
         <Col className="product-img">
-          <img src={product?.img} alt={product?.title} />
+          <img 
+            src={product?.img} 
+            alt={product?.title}
+            onError={(e) => {
+              // 이미지 로드 실패 시 placeholder 사용
+              e.target.src = `https://via.placeholder.com/600x720/cccccc/666666?text=${encodeURIComponent(product?.title || 'Product')}`;
+            }}
+          />
         </Col>
         <Col>
           <div style={{ fontSize: "24px", fontWeight: "bold" }}>
