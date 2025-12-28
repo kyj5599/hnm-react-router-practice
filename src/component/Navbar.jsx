@@ -11,13 +11,13 @@ const Navbar = ({ authenticate, setAuthenticate, logout }) => {
 
   const menuList = [
     "여성",
-    "Divided",
+    // "Divided",
     "남성",
     "신생아/유아",
     "아동",
-    "H&M Home",
+    // "H&M Home",
     "Sale",
-    "지속가능성",
+    // "지속가능성",
   ];
 
   const navigate = useNavigate();
